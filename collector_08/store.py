@@ -22,6 +22,29 @@ class RecordStore:
                 payload TEXT NOT NULL,
                 received_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
             )""")
+            connection.execute("""CREATE TABLE IF NOT EXISTS raw_events (
+                id INTEGER PRIMARY KEY,
+                source TEXT NOT NULL,
+                run_id TEXT NOT NULL,
+                authority TEXT NOT NULL,
+                event_id TEXT NOT NULL,
+                parcel TEXT NOT NULL,
+                code TEXT NOT NULL,
+                event_at TEXT NOT NULL,
+                received_at TEXT NOT NULL,
+                replaces TEXT NOT NULL DEFAULT '',
+                payload TEXT NOT NULL,
+                fingerprint TEXT NOT NULL UNIQUE,
+                ingested_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+            )""")
+            connection.execute("""CREATE TABLE IF NOT EXISTS projections (
+                parcel TEXT NOT NULL,
+                mapping_version INTEGER NOT NULL,
+                state TEXT NOT NULL,
+                run_id TEXT NOT NULL,
+                computed_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')),
+                PRIMARY KEY (parcel, mapping_version)
+            )""")
 
     def count(self):
         with self.connect() as connection:

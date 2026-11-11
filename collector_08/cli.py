@@ -2,6 +2,7 @@ import argparse
 import json
 from .store import RecordStore
 from .capture import capture
+from .run import run
 
 
 def main(argv=None):
@@ -11,9 +12,22 @@ def main(argv=None):
     parser.add_argument("--capture", metavar="FIXTURE_ROOT")
     parser.add_argument("--route", default='/carrier')
     parser.add_argument("--observed-at", default="2026-11-11T10:00:00Z")
+    parser.add_argument("--run", metavar="SCENARIO")
+    parser.add_argument("--output", metavar="OUTPUT")
     args = parser.parse_args(argv)
     if args.capture:
         print(json.dumps(capture(args.capture, args.route, args.database, args.observed_at), ensure_ascii=False))
+        return 0
+    if args.run:
+        if not args.output:
+            parser.error("--run 需要 --output 指定结果文件")
+        result = run(args.run, args.database, args.output)
+        print(json.dumps({
+            "run_id": result["run_id"],
+            "parcels": result["parcels"],
+            "notifications": result["notifications"],
+            "raw_count": result["raw_count"],
+        }, ensure_ascii=False))
         return 0
     if args.init:
         store = RecordStore(args.database)
