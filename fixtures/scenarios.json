@@ -1,0 +1,95 @@
+[
+  {
+    "name": "late_scan",
+    "run_id": "run-late_scan",
+    "sources": [
+      "/carrier"
+    ],
+    "options": {
+      "replay": false,
+      "mapping_version": 1
+    },
+    "expected": {
+      "parcels": [
+        {
+          "id": "PK1",
+          "state": "delivered"
+        }
+      ],
+      "notifications": 1
+    }
+  },
+  {
+    "name": "terminal_conflict",
+    "run_id": "run-terminal_conflict",
+    "sources": [
+      "/carrier",
+      "/return"
+    ],
+    "options": {
+      "replay": false,
+      "mapping_version": 1
+    },
+    "expected": {
+      "parcels": [
+        {
+          "id": "PK1",
+          "state": "conflict"
+        }
+      ],
+      "conflicts": [
+        {
+          "parcel": "PK1",
+          "events": [
+            "E2",
+            "E3"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "corrected",
+    "run_id": "run-corrected",
+    "sources": [
+      "/carrier",
+      "/correction"
+    ],
+    "options": {
+      "replay": false,
+      "mapping_version": 1
+    },
+    "expected": {
+      "parcels": [
+        {
+          "id": "PK1",
+          "state": "transit"
+        }
+      ],
+      "superseded": [
+        "E2"
+      ]
+    }
+  },
+  {
+    "name": "replay",
+    "run_id": "run-replay",
+    "sources": [
+      "/carrier"
+    ],
+    "options": {
+      "replay": true,
+      "mapping_version": 2
+    },
+    "expected": {
+      "parcels": [
+        {
+          "id": "PK1",
+          "state": "delivered"
+        }
+      ],
+      "notifications": 0,
+      "raw_count": 2
+    }
+  }
+]

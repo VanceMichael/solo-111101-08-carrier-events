@@ -1,0 +1,13 @@
+{
+  "name": "replay",
+  "run_id": "run-replay",
+  "sources": [
+    "/carrier"
+  ],
+  "options": {
+    "replay": true,
+    "mapping_version": 2
+  },
+  "fixture_root": "fixtures",
+  "portal_database": "portal.sqlite3"
+}

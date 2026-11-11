@@ -1,0 +1,13 @@
+{
+  "name": "late_scan",
+  "run_id": "run-late_scan",
+  "sources": [
+    "/carrier"
+  ],
+  "options": {
+    "replay": false,
+    "mapping_version": 1
+  },
+  "fixture_root": "fixtures",
+  "portal_database": "portal.sqlite3"
+}

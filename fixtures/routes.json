@@ -1,0 +1,23 @@
+{
+  "/carrier": [
+    {
+      "status": 200,
+      "file": "carrier.xml",
+      "headers": {
+        "ETag": "v1"
+      }
+    }
+  ],
+  "/return": [
+    {
+      "status": 200,
+      "file": "return.xml"
+    }
+  ],
+  "/correction": [
+    {
+      "status": 200,
+      "file": "correction.xml"
+    }
+  ]
+}

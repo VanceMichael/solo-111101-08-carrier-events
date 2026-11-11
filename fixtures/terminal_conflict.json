@@ -1,0 +1,14 @@
+{
+  "name": "terminal_conflict",
+  "run_id": "run-terminal_conflict",
+  "sources": [
+    "/carrier",
+    "/return"
+  ],
+  "options": {
+    "replay": false,
+    "mapping_version": 1
+  },
+  "fixture_root": "fixtures",
+  "portal_database": "portal.sqlite3"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "corrected",
+  "run_id": "run-corrected",
+  "sources": [
+    "/carrier",
+    "/correction"
+  ],
+  "options": {
+    "replay": false,
+    "mapping_version": 1
+  },
+  "fixture_root": "fixtures",
+  "portal_database": "portal.sqlite3"
+}
